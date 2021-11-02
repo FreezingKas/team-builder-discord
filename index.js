@@ -1,7 +1,6 @@
 // Require the necessary discord.js classes
 const { Intents } = require('discord.js');
 var DiscordJS = require('discord.js');
-const { token } = require('./config.json');
 const { create } = require('./commands/create');
 const { remove } = require('./commands/remove');
 const { invite } = require('./commands/invite')
@@ -95,4 +94,4 @@ client.on('interactionCreate', async (interaction) => {
     }
 })
 
-client.login(token)
+client.login(process.env.TOKEN)
