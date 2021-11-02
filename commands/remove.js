@@ -8,7 +8,6 @@ module.exports = {
 
         const delete_role = interaction.member.roles.cache.find(r => r.name.includes('Équipe'))
         const capitaine = interaction.guild.roles.cache.find(r => r.name === 'Capitaine')
-        console.log(delete_role)
 
         // si le boug n'a pas de rôle d'équipe ca dégage
         if(!delete_role) {
@@ -40,7 +39,7 @@ module.exports = {
 
         // envoi du message
         await interaction.editReply({
-            content: 'Équipe **'+ team_name+ '** supprimé'
+            content: 'Équipe **'+ team_name.replace("Équipe ", "") + '** supprimé'
         })
     }
 }

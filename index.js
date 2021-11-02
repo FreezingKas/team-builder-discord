@@ -4,7 +4,7 @@ var DiscordJS = require('discord.js');
 const { token } = require('./config.json');
 const { create } = require('./commands/create');
 const { remove } = require('./commands/remove');
-
+const { invite } = require('./commands/invite')
 
 
 const client = new DiscordJS.Client({
@@ -25,7 +25,7 @@ client.on('ready', () => {
         }
     
         commands?.create({
-            name: 'test',
+            name: 'admin',
             description: 'Commande de test'
         })
 
@@ -47,6 +47,19 @@ client.on('ready', () => {
             name: 'remove',
             description: "Supprimer l'équipe dont je suis le capitaine"
         })
+
+        commands?.create({
+            name: 'invite',
+            description: 'Inviter un membre dans la team',
+            options: [
+                {
+                    name: 'pseudo',
+                    description: "Pseudo du membre invité",
+                    required: true,
+                    type: DiscordJS.Constants.ApplicationCommandOptionTypes.USER
+                }
+            ]
+        })
     }
 })
 
@@ -59,11 +72,13 @@ client.on('interactionCreate', async (interaction) => {
     const { commandName, options } = interaction
 
     // commande de test
-    if (commandName === 'test') {s
-
+    if (commandName === 'admin') {
+        
         interaction.reply({
-            content: 'test fini'
+            content: "admin"
         })
+
+
     }
 
     // Création de team
@@ -73,6 +88,10 @@ client.on('interactionCreate', async (interaction) => {
 
     if (commandName === 'remove') {
         remove(interaction)
+    }
+
+    if(commandName === 'invite') {
+        invite(interaction)
     }
 })
 
