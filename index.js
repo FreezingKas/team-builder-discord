@@ -1,8 +1,9 @@
 // Require the necessary discord.js classes
-const { Intents, Permissions } = require('discord.js');
+const { Intents } = require('discord.js');
 var DiscordJS = require('discord.js');
 const { token } = require('./config.json');
-const { create } = require('./commands/create')
+const { create } = require('./commands/create');
+const { remove } = require('./commands/remove');
 
 
 
@@ -40,7 +41,12 @@ client.on('ready', () => {
                     type: DiscordJS.Constants.ApplicationCommandOptionTypes.STRING
                 }
             ]
-        })   
+        })
+        
+        commands?.create({
+            name: 'remove',
+            description: "Supprimer l'équipe dont je suis le capitaine"
+        })
     }
 })
 
@@ -52,8 +58,9 @@ client.on('interactionCreate', async (interaction) => {
     // récupérer les args
     const { commandName, options } = interaction
 
-    // classique commande
-    if (commandName === 'test') {
+    // commande de test
+    if (commandName === 'test') {s
+
         interaction.reply({
             content: 'test fini'
         })
@@ -62,6 +69,10 @@ client.on('interactionCreate', async (interaction) => {
     // Création de team
     if (commandName === 'create') {
         create(interaction)
+    }
+
+    if (commandName === 'remove') {
+        remove(interaction)
     }
 })
 
