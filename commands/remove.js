@@ -17,11 +17,12 @@ module.exports = {
             return
         }
 
-        // si il n'a pas le rôle d'équipe ca dégage
+        // si il n'a pas le rôle de capitaine ca dégage
         if(!interaction.member.roles.cache.find(r => r === capitaine)) {
             await interaction.editReply({
                 content: "Seul le capitaine peut supprimer l'équipe"
             })
+            return
         }
 
         // retrouver la category de team

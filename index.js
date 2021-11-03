@@ -3,7 +3,9 @@ const { Intents } = require('discord.js');
 var DiscordJS = require('discord.js');
 const { create } = require('./commands/create');
 const { remove } = require('./commands/remove');
-const { invite } = require('./commands/invite')
+const { invite } = require('./commands/invite');
+const { leave } = require('./commands/leave');
+const { kick } = require('./commands/kick');
 
 
 const client = new DiscordJS.Client({
@@ -59,6 +61,25 @@ client.on('ready', () => {
                 }
             ]
         })
+
+        commands?.create({
+            name: 'leave',
+            description: "Quitter mon équipe actuelle"
+        })
+
+        commands?.create({
+            name: 'kick',
+            description: 'Kick un membre dans la team',
+            options: [
+                {
+                    name: 'pseudo',
+                    description: "Pseudo du membre à kick",
+                    required: true,
+                    type: DiscordJS.Constants.ApplicationCommandOptionTypes.USER
+                }
+            ]
+        })
+
     }
 })
 
@@ -72,12 +93,9 @@ client.on('interactionCreate', async (interaction) => {
 
     // commande de test
     if (commandName === 'admin') {
-        
         interaction.reply({
             content: "admin"
         })
-
-
     }
 
     // Création de team
@@ -91,6 +109,14 @@ client.on('interactionCreate', async (interaction) => {
 
     if(commandName === 'invite') {
         invite(interaction)
+    }
+
+    if(commandName === 'leave') {
+        leave(interaction)
+    }
+
+    if(commandName === 'kick') {
+        kick(interaction)
     }
 })
 
