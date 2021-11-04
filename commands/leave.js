@@ -25,8 +25,10 @@ module.exports = {
 
         await interaction.member.roles.remove(team_role)
 
+        console.log(interaction.member.nickname + " a quitté **l'" + team_role.name)
+
         await interaction.editReply({
-            content: "Tu viens de quitter l'**"+team_role.name + "**"
+            content: interaction.member.nickname + " a quitté **l'" + team_role.name+"**"
         })
     }
 }

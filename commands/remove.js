@@ -38,6 +38,8 @@ module.exports = {
         // suppression du rôle de capitaine du membre
         interaction.member.roles.remove(capitaine)
 
+        console.log('Équipe '+ team_name.replace("Équipe ", "") + ' supprimé')
+
         // envoi du message
         await interaction.editReply({
             content: 'Équipe **'+ team_name.replace("Équipe ", "") + '** supprimé'

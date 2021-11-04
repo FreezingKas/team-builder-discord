@@ -13,7 +13,7 @@ const client = new DiscordJS.Client({
 })
 
 client.on('ready', () => {
-    console.log('The bot is ready');
+    console.log('Le bot fait du running');
     let commands;
 
     for (var guild of client.guilds.cache) {

@@ -31,6 +31,8 @@ module.exports = {
         // ajouter le rôle au boug invité
         user.roles.add(team_role)
 
+        console.log(user.nickname + " ajouté dans l'" + team_role.name)
+
         await interaction.editReply({
             content: user.nickname + " ajouté dans l'**" + team_role.name+"**"
         })
