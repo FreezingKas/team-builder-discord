@@ -1,4 +1,3 @@
-
 module.exports = {
     invite: async function(interaction) {
         await interaction.deferReply({})
@@ -10,7 +9,7 @@ module.exports = {
         const capitaine = interaction.guild.roles.cache.find(r => r.name === 'Capitaine')
 
         // si il n'a pas le rôle de capitaine ca dégage
-        if(!interaction.member.roles.cache.find(r => r === capitaine)) {
+        if (!interaction.member.roles.cache.find(r => r === capitaine)) {
             await interaction.editReply({
                 content: "Seul le capitaine peut inviter des membres !"
             })
@@ -18,7 +17,7 @@ module.exports = {
         }
 
         // si il a pas d'équipe
-        if(!team_role) {
+        if (!team_role) {
             await interaction.editReply({
                 content: "Tu n'est pas capitaine d'une équipe !"
             })
@@ -28,13 +27,20 @@ module.exports = {
         // récupérer user en args
         const user = interaction.guild.members.resolve(options.getUser('pseudo'))
 
+        if (user.user.bot) {
+            await interaction.editReply({
+                content: "Tu ne peux pas inviter un bot, espèce d'abruti !"
+            })
+            return
+        }
+
         // ajouter le rôle au boug invité
         user.roles.add(team_role)
 
         console.log(user.nickname + " ajouté dans l'" + team_role.name)
 
         await interaction.editReply({
-            content: user.nickname + " ajouté dans l'**" + team_role.name+"**"
+            content: user.nickname + " ajouté dans l'**" + team_role.name + "**"
         })
     }
 }

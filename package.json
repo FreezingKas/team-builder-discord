@@ -1,6 +1,6 @@
 {
     "name": "team-builder",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Create team with discord",
     "main": "index.js",
     "scripts": {
@@ -15,8 +15,6 @@
         "wokcommands": "^1.5.3"
     },
     "engines": {
-        "node":"17.0.1"
+        "node": "17.0.1"
     }
-
-
 }
